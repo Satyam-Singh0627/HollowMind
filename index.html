@@ -408,35 +408,117 @@
 
         </section>
 
+<!-- ===================================== -->
+<!-- WIN / LEADERBOARD -->
+<!-- ===================================== -->
 
-        <!-- ===================================== -->
-        <!-- WIN -->
-        <!-- ===================================== -->
+<section id="winScreen"
+         class="screen hidden">
 
-        <section id="winScreen"
-                 class="screen hidden">
+    <h1>
 
-            <h1>
+        MISSION COMPLETED
 
-                MISSION COMPLETED
+    </h1>
 
-            </h1>
+    <p class="winSubtitle">
 
-            <p>
+        ALL CAMERA NODES HAVE BEEN RESTORED
 
-                ALL CAMERA NODES
-                HAVE BEEN RESTORED
+    </p>
 
-            </p>
+    <!-- Mission Report -->
 
-            <button id="replayGame">
+    <div id="leaderBoard">
 
-                REPLAY
+        <h2>
 
-            </button>
+            MISSION REPORT
 
-        </section>
+        </h2>
 
+        <div class="resultRow">
+
+            <span>OPERATOR</span>
+
+            <span id="resultOperator">
+
+                UNKNOWN
+
+            </span>
+
+        </div>
+
+        <div class="resultRow">
+
+            <span>TIME REMAINING</span>
+
+            <span id="resultTime">
+
+                00:00
+
+            </span>
+
+        </div>
+
+        <div class="resultRow">
+
+            <span>LIVES LEFT</span>
+
+            <span id="resultLives">
+
+                3
+
+            </span>
+
+        </div>
+
+        <div class="resultRow">
+
+            <span>CAMERAS RESTORED</span>
+
+            <span id="resultCamera">
+
+                4 / 4
+
+            </span>
+
+        </div>
+
+        <div class="resultRow">
+
+            <span>MATCH ACCURACY</span>
+
+            <span id="resultAccuracy">
+
+                100%
+
+            </span>
+
+        </div>
+
+        <div class="resultRow">
+
+            <span>FINAL RANK</span>
+
+            <span id="finalRank">
+
+                SURVIVOR
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <button id="replayGame">
+
+        PLAY AGAIN
+
+    </button>
+
+</section>
+        
     </div>
 
     <!-- Scripts -->

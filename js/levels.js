@@ -209,10 +209,48 @@ function updateHUD() {
         GameState.lives;
 
     document.getElementById("cameraLevel").textContent =
-    String(level.id).padStart(2, "0");
+        "0" + level.id;
 
     document.getElementById("timeValue").textContent =
         formatTime(GameState.timer);
+
+    // ===========================
+    // THREAT LEVEL
+    // ===========================
+
+    const threat = document.getElementById("threatLevel");
+
+    switch(level.id){
+
+        case 1:
+
+            threat.textContent = "LOW";
+            threat.style.color = "#00ff66";
+            threat.style.textShadow = "0 0 12px #00ff66";
+            break;
+
+        case 2:
+
+            threat.textContent = "MODERATE";
+            threat.style.color = "#ffd700";
+            threat.style.textShadow = "0 0 12px #ffd700";
+            break;
+
+        case 3:
+
+            threat.textContent = "HIGH";
+            threat.style.color = "#ff8800";
+            threat.style.textShadow = "0 0 12px #ff8800";
+            break;
+
+        case 4:
+
+            threat.textContent = "EXTREME";
+            threat.style.color = "#ff2222";
+            threat.style.textShadow = "0 0 18px red";
+            break;
+
+    }
 
 }
 

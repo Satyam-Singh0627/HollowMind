@@ -1522,3 +1522,86 @@ button:hover{
     }
 
 }
+
+/*=========================================
+        LEADERBOARD
+=========================================*/
+
+.winSubtitle{
+
+    color:#00ff88;
+
+    margin-bottom:30px;
+
+    letter-spacing:4px;
+
+}
+
+#leaderBoard{
+
+    width:550px;
+
+    max-width:90%;
+
+    border:2px solid #00ff88;
+
+    background:rgba(0,0,0,.55);
+
+    padding:30px;
+
+    margin:25px;
+
+    box-shadow:
+    0 0 20px rgba(0,255,120,.25);
+
+}
+
+#leaderBoard h2{
+
+    margin-bottom:25px;
+
+    color:#00ff88;
+
+    text-align:center;
+
+    letter-spacing:3px;
+
+}
+
+.resultRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(0,255,120,.15);
+
+    font-size:22px;
+
+}
+
+.resultRow span:first-child{
+
+    color:#bbbbbb;
+
+}
+
+.resultRow span:last-child{
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+#finalRank{
+
+    color:#ffcc33;
+
+    text-shadow:0 0 15px gold;
+
+    font-size:28px;
+
+}

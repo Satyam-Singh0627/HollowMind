@@ -348,6 +348,50 @@ function showGameOver() {
 
 }
 
+
+function updateMissionReport(){
+
+    document.getElementById("resultOperator").textContent =
+        localStorage.getItem("operatorName") || "UNKNOWN";
+
+    document.getElementById("resultTime").textContent =
+        formatTime(GameState.timer);
+
+    document.getElementById("resultLives").textContent =
+        GameState.lives;
+
+    document.getElementById("resultCamera").textContent =
+        LEVELS.length + " / " + LEVELS.length;
+
+    const accuracy =
+        Math.max(
+            60,
+            Math.round(
+                (GameState.matchedPairs /
+                GameState.totalPairs) * 100
+            )
+        );
+
+    document.getElementById("resultAccuracy").textContent =
+        accuracy + "%";
+
+    let rank="RECRUIT";
+
+    if(GameState.lives==3 && GameState.timer>70)
+        rank="LEGEND";
+
+    else if(GameState.lives>=2)
+        rank="SURVIVOR";
+
+    else if(GameState.lives==1)
+        rank="ESCAPED";
+
+    else
+        rank="CRITICAL";
+
+    document.getElementById("finalRank").textContent=rank;
+
+}
 /* ==========================================================
     WIN SCREEN
 ========================================================== */
@@ -362,6 +406,8 @@ function showWinScreen() {
     stopHeartbeat();
 
     stopTicking();
+
+    updateMissionReport();
 
     showScreen("winScreen");
 
