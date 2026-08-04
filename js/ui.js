@@ -185,6 +185,12 @@ const restartButton =
 const replayButton =
     document.getElementById("replayGame");
 
+const newOperatorGameOver =
+    document.getElementById("newOperatorGameOver");
+
+const newOperatorWin =
+    document.getElementById("newOperatorWin");
+
 const closeInstructionsButton =
     document.getElementById("closeInstructions");
 
@@ -397,6 +403,50 @@ clickScreen.addEventListener("click", () => {
     startBootSequence();
 
 });
+
+/* ==========================================================
+    NEW OPERATOR BUTTONS
+========================================================== */
+
+function startNewOperator(){
+
+    stopAllSounds();
+
+    GameState.gameStarted = false;
+
+    resetGame();
+
+    localStorage.removeItem("operatorName");
+
+    operatorName="";
+
+    document.getElementById("operatorName").value="";
+
+    document.getElementById("operatorDisplay").textContent="UNKNOWN";
+
+    showScreen("operatorScreen");
+
+}
+
+if(newOperatorGameOver){
+
+    newOperatorGameOver.addEventListener("click",()=>{
+
+        startNewOperator();
+
+    });
+
+}
+
+if(newOperatorWin){
+
+    newOperatorWin.addEventListener("click",()=>{
+
+        startNewOperator();
+
+    });
+
+}
 
 /* ==========================================================
     UI READY

@@ -1605,3 +1605,25 @@ button:hover{
     font-size:28px;
 
 }
+
+/*=========================================
+        END SCREEN BUTTONS
+=========================================*/
+
+.endButtons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+.endButtons button{
+
+    width:220px;
+
+}
