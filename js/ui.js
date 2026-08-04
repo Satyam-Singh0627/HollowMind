@@ -50,6 +50,7 @@ async function startBootSequence() {
 
     if (bootRunning)
         return;
+    GameState.gameStarted = false; 
 
     bootRunning = true;
 
@@ -336,20 +337,28 @@ async function cameraRestoreTransition(nodeNumber) {
     SCREEN HELPERS
 ========================================================== */
 
-function fadeToScreen(screenId) {
+function fadeToScreen(screenId){
 
     const container =
         document.getElementById("gameContainer");
 
-    temporaryClass(container, "fadeOut", 450);
+    container.classList.add("fadeOut");
 
-    setTimeout(() => {
+    setTimeout(()=>{
 
         showScreen(screenId);
 
-        temporaryClass(container, "fadeIn", 450);
+        container.classList.remove("fadeOut");
 
-    }, 450);
+        container.classList.add("fadeIn");
+
+        setTimeout(()=>{
+
+            container.classList.remove("fadeIn");
+
+        },500);
+
+    },500);
 
 }
 
@@ -397,54 +406,49 @@ document.addEventListener("keydown", (event) => {
 
 clickScreen.addEventListener("click", () => {
 
-    if (GameState.gameStarted)
-        return;
 
     startBootSequence();
 
 });
 
 /* ==========================================================
-    NEW OPERATOR BUTTONS
+    NEW OPERATOR
+========================================================== */
+/* ==========================================================
+    NEW OPERATOR
 ========================================================== */
 
-function startNewOperator(){
+function newOperator(){
 
     stopAllSounds();
 
-    GameState.gameStarted = false;
+    clearInterval(GameState.timerInterval);
 
     resetGame();
 
+    GameState.gameStarted = false;
+
+    bootRunning = false;
+
     localStorage.removeItem("operatorName");
 
-    operatorName="";
+    document.getElementById("operatorName").value = "";
 
-    document.getElementById("operatorName").value="";
+    document.getElementById("operatorDisplay").textContent = "UNKNOWN";
 
-    document.getElementById("operatorDisplay").textContent="UNKNOWN";
-
-    showScreen("operatorScreen");
+    showScreen("clickScreen");
 
 }
 
 if(newOperatorGameOver){
 
-    newOperatorGameOver.addEventListener("click",()=>{
-
-        startNewOperator();
-
-    });
+    newOperatorGameOver.addEventListener("click", newOperator);
 
 }
 
 if(newOperatorWin){
 
-    newOperatorWin.addEventListener("click",()=>{
-
-        startNewOperator();
-
-    });
+    newOperatorWin.addEventListener("click", newOperator);
 
 }
 

@@ -425,15 +425,20 @@ function restartWholeGame() {
 
     resetGame();
 
+    GameState.currentLevel = 0;
+
+    GameState.gameStarted = false;
+
     GameState.firstCard = null;
     GameState.secondCard = null;
     GameState.lockBoard = false;
     GameState.canClick = false;
 
     board.innerHTML = "";
+
     stopHeartbeat();
+
     stopTicking();
-    showScreen("startScreen");
 
 }
 
