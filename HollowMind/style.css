@@ -1,0 +1,1155 @@
+/* ======================================================
+   HOLLOWMIND
+   STYLE.CSS
+   PART 1
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    background:#000;
+    color:#ffffff;
+
+    font-family:'Share Tech Mono', monospace;
+
+}
+
+body{
+
+    position:relative;
+
+}
+
+/* ==========================================
+            MAIN CONTAINER
+========================================== */
+
+#gameContainer{
+
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+
+    overflow:hidden;
+
+    background:#000;
+
+}
+
+/* ==========================================
+                SCREENS
+========================================== */
+
+.screen{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+    transition:.5s ease;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.active{
+
+    display:flex;
+
+}
+
+/* ==========================================
+                FONTS
+========================================== */
+
+.gameTitle{
+
+    font-family:'VT323', monospace;
+
+    font-size:90px;
+
+    color:#00ff88;
+
+    letter-spacing:8px;
+
+    margin-bottom:30px;
+
+    text-shadow:
+    0 0 10px #00ff88,
+    0 0 20px #00ff88,
+    0 0 40px #00ff88;
+
+}
+
+.warningTitle{
+
+    color:#ff2222;
+
+    font-size:70px;
+
+    font-family:'VT323', monospace;
+
+    text-shadow:
+    0 0 20px red;
+
+}
+
+h1{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+
+}
+
+h2{
+
+    margin-bottom:20px;
+
+}
+
+p{
+
+    font-size:22px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================
+            TERMINAL COLORS
+========================================== */
+
+.green{
+
+    color:#00ff66;
+
+}
+
+.red{
+
+    color:#ff4040;
+
+}
+
+.yellow{
+
+    color:#ffdb4d;
+
+}
+
+/* ==========================================
+              BLINK
+========================================== */
+
+.blink{
+
+    animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+          BOOT TERMINAL
+========================================== */
+
+#bootText{
+
+    width:100%;
+
+    max-width:1000px;
+
+    color:#00ff88;
+
+    font-size:28px;
+
+    text-align:left;
+
+    white-space:pre-wrap;
+
+    font-family:'VT323', monospace;
+
+}
+
+/* ==========================================
+        TERMINAL BOX
+========================================== */
+
+.terminalBox{
+
+    width:700px;
+
+    max-width:90%;
+
+    border:2px solid #00ff88;
+
+    padding:25px;
+
+    margin:30px auto;
+
+    background:rgba(0,0,0,.55);
+
+}
+
+.terminalOption{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:25px 0;
+
+    font-size:28px;
+
+}
+
+.selected{
+
+    color:#00ff88;
+
+    text-shadow:0 0 12px #00ff88;
+
+}
+
+/* ==========================================
+        INSTRUCTION BOX
+========================================== */
+
+.instructionBox{
+
+    width:900px;
+
+    max-width:90%;
+
+    text-align:left;
+
+    border:2px solid #00ff88;
+
+    padding:35px;
+
+    margin:30px;
+
+    background:rgba(255,255,255,.03);
+
+}
+
+.instructionBox h3{
+
+    margin-top:20px;
+
+    margin-bottom:12px;
+
+    color:#00ff88;
+
+}
+
+.instructionBox ul{
+
+    margin-left:35px;
+
+}
+
+.instructionBox li{
+
+    margin:10px 0;
+
+    font-size:20px;
+
+}
+
+/* ==========================================
+            BUTTONS
+========================================== */
+
+button{
+
+    padding:15px 35px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    background:#111;
+
+    color:white;
+
+    border:2px solid #00ff88;
+
+    transition:.3s;
+
+    font-family:'Share Tech Mono', monospace;
+
+}
+
+button:hover{
+
+    background:#00ff88;
+
+    color:black;
+
+    transform:scale(1.08);
+
+    box-shadow:
+
+        0 0 20px #00ff88,
+
+        0 0 50px #00ff88;
+
+}
+
+#closeInstructions{
+
+    position:absolute;
+
+    top:30px;
+
+    right:30px;
+
+}
+
+/* ==========================================
+                HUD
+========================================== */
+
+#hud{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:28px;
+
+    z-index:100;
+
+}
+
+#lives{
+
+    color:#ff5555;
+
+}
+
+#timer{
+
+    color:#00ff88;
+
+}
+
+#level{
+
+    color:#ffffff;
+
+}
+/* ==========================================
+            GAME BOARD
+========================================== */
+
+#gameBoard{
+
+    position:absolute;
+
+    top:90px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+    height:calc(100% - 120px);
+
+    display:grid;
+
+    justify-content:center;
+    align-content:center;
+
+    gap:18px;
+
+}
+
+/* Grid sizes */
+
+.level1{
+
+    grid-template-columns:repeat(3,140px);
+
+}
+
+.level2{
+
+    grid-template-columns:repeat(5,130px);
+
+}
+
+.level3{
+
+    grid-template-columns:repeat(4,130px);
+
+}
+
+.level4{
+
+    grid-template-columns:repeat(6,120px);
+
+}
+
+/* ==========================================
+                MEMORY CARD
+========================================== */
+
+.card{
+
+    position:relative;
+
+    width:120px;
+    height:150px;
+
+    cursor:pointer;
+
+    transform-style:preserve-3d;
+
+    transition:transform .6s;
+
+    perspective:1000px;
+
+}
+
+.card.flip{
+
+    transform:rotateY(180deg);
+
+}
+
+.card-face{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    backface-visibility:hidden;
+
+    border:2px solid #00ff88;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:#000;
+
+}
+
+.card-front{
+
+    transform:rotateY(180deg);
+
+}
+
+.card-back{
+
+    background:#050505;
+
+}
+
+.card-face img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================
+            CAMERA RESTORE
+========================================== */
+
+#cameraScreen{
+
+    color:#00ff88;
+
+}
+
+#cameraNumber{
+
+    font-size:70px;
+
+    margin:30px;
+
+    font-family:'VT323', monospace;
+
+    text-shadow:0 0 18px #00ff88;
+
+}
+
+/* ==========================================
+            GAME OVER
+========================================== */
+
+#gameOverScreen{
+
+    background:
+
+    radial-gradient(circle,
+    #220000 0%,
+    #000 80%);
+
+}
+#gameOverScreen h1{
+
+    color:#ff3333;
+
+    font-size:90px;
+
+    text-shadow:
+
+    0 0 20px #ff0000,
+
+    0 0 45px #ff0000,
+
+    0 0 90px #880000;
+
+}
+
+/* ==========================================
+            WIN SCREEN
+========================================== */
+
+#winScreen h1{
+
+    color:#00ff88;
+
+    font-size:80px;
+
+    text-shadow:0 0 20px #00ff88;
+
+}
+
+/* ==========================================
+            CRT OVERLAY
+========================================== */
+
+#crtOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:900;
+
+    background:
+
+    radial-gradient(circle,
+    transparent 55%,
+    rgba(0,0,0,.35) 100%);
+
+}
+#bloodOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:998;
+
+    opacity:0;
+
+    background:
+
+    radial-gradient(circle at 50% 20%,
+    rgba(160,0,0,.8),
+    transparent 35%),
+
+    linear-gradient(
+        to bottom,
+        rgba(120,0,0,.95) 0%,
+        transparent 25%
+    );
+
+}
+
+#bloodOverlay.active{
+
+    animation:bloodFall 3s forwards;
+
+}
+
+@keyframes bloodFall{
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(-100%);
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================
+            SCANLINES
+========================================== */
+
+#scanlines{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:901;
+
+    opacity:.18;
+
+    background:
+
+    repeating-linear-gradient(
+
+        to bottom,
+
+        rgba(255,255,255,.04),
+
+        rgba(255,255,255,.04) 2px,
+
+        transparent 3px,
+
+        transparent 6px
+
+    );
+
+}
+
+/* ==========================================
+            GLITCH LAYER
+========================================== */
+
+#glitchOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:902;
+
+    opacity:0;
+
+    mix-blend-mode:screen;
+
+}
+
+.glitch{
+
+    animation:glitchFlash .45s;
+
+}
+
+@keyframes glitchFlash{
+
+    0%{
+
+        opacity:0;
+        transform:translateX(0);
+
+    }
+
+    10%{
+
+        opacity:.85;
+        transform:translate(-18px,-4px);
+
+    }
+
+    20%{
+
+        opacity:.25;
+        transform:translate(16px,6px);
+
+    }
+
+    35%{
+
+        opacity:.9;
+        transform:translate(-10px,8px);
+
+    }
+
+    50%{
+
+        opacity:.3;
+        transform:translate(12px,-6px);
+
+    }
+
+    70%{
+
+        opacity:.8;
+        transform:scale(1.02);
+
+    }
+
+    100%{
+
+        opacity:0;
+        transform:none;
+
+    }
+
+}
+
+/* ==========================================
+            SCREEN FLASH
+========================================== */
+
+#flash{
+
+    position:fixed;
+
+    inset:0;
+
+    background:white;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:999;
+
+}
+
+.flash{
+
+    animation:screenFlash .25s;
+
+}
+
+@keyframes screenFlash{
+
+    0%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+            FLICKER
+========================================== */
+
+#gameContainer{
+
+    animation:flicker 3.5s infinite;
+
+}
+
+@keyframes flicker{
+
+    0%,18%,20%,62%,64%,100%{
+
+        opacity:1;
+
+    }
+
+    19%{
+
+        opacity:.94;
+
+    }
+
+    63%{
+
+        opacity:.92;
+
+    }
+
+}
+
+/* ==========================================
+            SHAKE
+========================================== */
+
+.shake{
+
+    animation:shake .65s;
+
+}
+
+@keyframes shake{
+
+    0%{
+
+        transform:translateX(0);
+
+    }
+
+    20%{
+
+        transform:translateX(-10px);
+
+    }
+
+    40%{
+
+        transform:translateX(10px);
+
+    }
+
+    60%{
+
+        transform:translateX(-7px);
+
+    }
+
+    80%{
+
+        transform:translateX(7px);
+
+    }
+
+    100%{
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ==========================================
+            FADE
+========================================== */
+
+.fadeIn{
+
+    animation:fadeIn .5s;
+
+}
+
+.fadeOut{
+
+    animation:fadeOut .5s forwards;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes fadeOut{
+
+    from{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        opacity:0;
+
+    }
+
+}
+
+/* ==========================================
+            RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .gameTitle{
+
+        font-size:60px;
+
+    }
+
+    .terminalBox{
+
+        width:95%;
+
+    }
+
+    .instructionBox{
+
+        width:95%;
+
+    }
+
+    #hud{
+
+        font-size:22px;
+
+    }
+
+    .card{
+
+        width:90px;
+
+        height:120px;
+
+    }
+
+    .level4{
+
+        grid-template-columns:repeat(4,90px);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .gameTitle{
+
+        font-size:42px;
+
+        letter-spacing:3px;
+
+    }
+
+    h1{
+
+        font-size:34px;
+
+    }
+
+    p{
+
+        font-size:18px;
+
+    }
+
+    #hud{
+
+        font-size:18px;
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        width:70px;
+
+        height:95px;
+
+    }
+
+    .level1{
+
+        grid-template-columns:repeat(3,70px);
+
+    }
+
+    .level2{
+
+        grid-template-columns:repeat(5,70px);
+
+    }
+
+    .level3{
+
+        grid-template-columns:repeat(4,70px);
+
+    }
+
+    .level4{
+
+        grid-template-columns:repeat(4,70px);
+
+    }
+
+}
+
+/* ======================================================
+            END OF STYLE.CSS
+====================================================== */
+
+#mainLogo{
+
+    width:700px;
+    max-width:90vw;
+
+    filter:
+        drop-shadow(0 0 20px #00ff88)
+        drop-shadow(0 0 45px #00ff88);
+
+    animation:logoPulse 3s infinite;
+
+}
+
+@keyframes logoPulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+    50%{
+
+        transform:scale(1.03);
+
+        opacity:.92;
+
+    }
+
+}
+/* ==================================================
+   GAMEPLAY VIDEO
+================================================== */
+
+#gameScreen{
+
+    overflow:hidden;
+
+}
+
+#levelVideo{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center center;
+
+    pointer-events:none;
+
+    display:none;
+
+    z-index:0;
+
+    opacity:.90;
+
+    filter:
+        brightness(.75)
+        contrast(1.15)
+        saturate(1.15);
+
+}
+
+#hud{
+
+    position:absolute;
+
+    z-index:100;
+
+}
+
+#gameBoard{
+
+    position:absolute;
+
+    top:90px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+    height:calc(100% - 120px);
+
+    display:grid;
+
+    justify-content:center;
+    align-content:center;
+
+    gap:18px;
+
+    z-index:50;
+
+}
