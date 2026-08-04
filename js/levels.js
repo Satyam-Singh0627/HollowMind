@@ -153,7 +153,15 @@ const GameState = {
 
     timerInterval: null,
 
-    gameStarted: false
+    gameStarted: false,
+
+    correctMatches: 0,
+    
+    wrongMatches: 0,    
+
+    totalLives: 0,
+
+    totalPlayTime: 0
 
 };
 
@@ -296,6 +304,14 @@ function resetGame() {
 
     GameState.gameStarted = false;
 
+    GameState.totalLives = 0;
+
+    GameState.totalPlayTime = 0;
+    
+    GameState.correctMatches = 0;
+
+    GameState.wrongMatches = 0;
+
     loadLevelData();
 
 }
@@ -311,6 +327,8 @@ function startTimer() {
     GameState.timerInterval = setInterval(() => {
 
         GameState.timer--;
+
+        GameState.totalPlayTime++;
 
         updateHUD();
 

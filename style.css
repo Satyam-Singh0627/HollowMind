@@ -1627,3 +1627,54 @@ button:hover{
     width:220px;
 
 }
+
+.leaderTitle{
+
+    margin-top:25px;
+
+    color:#ff2d2d;
+
+    text-align:center;
+
+}
+
+#leaderboardTable{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+#leaderboardTable th,
+#leaderboardTable td{
+
+    border:1px solid rgba(255,0,0,.4);
+
+    padding:10px;
+
+    text-align:center;
+
+}
+
+#leaderboardTable th{
+
+    color:#ff3b3b;
+
+}
+
+#leaderboardTable tr:nth-child(even){
+
+    background:rgba(255,255,255,.03);
+
+}
+
+.leaderDivider{
+
+    margin:25px 0;
+
+    border-color:#ff2d2d44;
+
+}

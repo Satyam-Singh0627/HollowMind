@@ -457,3 +457,85 @@ if(newOperatorWin){
 ========================================================== */
 
 console.log("UI Loaded Successfully");
+
+function formatLeaderboardTime(seconds){
+
+    const m = Math.floor(seconds/60);
+
+    const s = seconds%60;
+
+    return String(m).padStart(2,"0")+":"+
+           String(s).padStart(2,"0");
+
+}
+
+function saveLeaderboard(){
+
+    const leaderboard =
+        JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    leaderboard.push({
+
+        operator:
+            localStorage.getItem("operatorName") || "UNKNOWN",
+
+        lives:
+            GameState.totalLives,
+
+        time:
+            GameState.totalPlayTime
+
+    });
+
+    leaderboard.sort((a,b)=>{
+
+        if(b.lives!==a.lives)
+            return b.lives-a.lives;
+
+        return a.time-b.time;
+
+    });
+
+    leaderboard.splice(10);
+
+    localStorage.setItem(
+
+        "leaderboard",
+
+        JSON.stringify(leaderboard)
+
+    );
+
+}
+
+function loadLeaderboard(){
+
+    const leaderboard =
+        JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    const body =
+        document.getElementById("leaderboardBody");
+
+    body.innerHTML="";
+
+    leaderboard.forEach((player,index)=>{
+
+        body.innerHTML += `
+
+        <tr>
+
+            <td>${index+1}</td>
+
+            <td>${player.operator}</td>
+
+            <td>${player.lives}</td>
+
+            <td>${formatLeaderboardTime(player.time)}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}

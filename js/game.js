@@ -198,6 +198,8 @@ async function checkMatch() {
         second.removeEventListener("click", handleCardClick);
 
         GameState.matchedPairs++;
+        
+        GameState.correctMatches++;
 
         resetTurn();
 
@@ -220,7 +222,9 @@ async function checkMatch() {
 
     playWrong();
 
-    GameState.lives--;
+    GameState.wrongMatches++;
+    
+    GameState.lives--;  
 
     updateHUD();
 
@@ -262,6 +266,8 @@ function resetTurn() {
 ========================================================== */
 
 async function levelCompleted() {
+
+    GameState.totalLives += GameState.lives;
 
     GameState.canClick = false;
 
@@ -358,39 +364,41 @@ function updateMissionReport(){
         localStorage.getItem("operatorName") || "UNKNOWN";
 
     document.getElementById("resultTime").textContent =
-        formatTime(GameState.timer);
+    formatLeaderboardTime(GameState.totalPlayTime);
 
     document.getElementById("resultLives").textContent =
-        GameState.lives;
+    GameState.totalLives;
 
     document.getElementById("resultCamera").textContent =
         LEVELS.length + " / " + LEVELS.length;
 
+    const totalAttempts =
+    GameState.correctMatches +
+    GameState.wrongMatches;
+
     const accuracy =
-        Math.max(
-            60,
-            Math.round(
-                (GameState.matchedPairs /
-                GameState.totalPairs) * 100
-            )
-        );
+    totalAttempts === 0
+        ? 100
+        : Math.round(
+            (GameState.correctMatches / totalAttempts) * 100
+          );
 
     document.getElementById("resultAccuracy").textContent =
         accuracy + "%";
 
     let rank="RECRUIT";
 
-    if(GameState.lives==3 && GameState.timer>70)
-        rank="LEGEND";
+    if(GameState.totalLives >= 12)
+    rank = "LEGEND";
 
-    else if(GameState.lives>=2)
-        rank="SURVIVOR";
+    else if(GameState.totalLives >= 8)
+    rank = "SURVIVOR";
 
-    else if(GameState.lives==1)
-        rank="ESCAPED";
+    else if(GameState.totalLives >= 4)
+    rank = "ESCAPED";
 
     else
-        rank="CRITICAL";
+    rank = "CRITICAL";
 
     document.getElementById("finalRank").textContent=rank;
 
@@ -411,6 +419,10 @@ function showWinScreen() {
     stopTicking();
 
     updateMissionReport();
+
+    saveLeaderboard();
+
+    loadLeaderboard();
 
     showScreen("winScreen");
 
