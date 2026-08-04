@@ -1349,3 +1349,176 @@ button:hover{
     word-break:break-word;
 
 }
+
+/*==========================================
+        REALISTIC CLAW SCRATCH
+==========================================*/
+
+#scratchOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    z-index:9999;
+
+}
+
+#scratchOverlay::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220%;
+
+    height:220%;
+
+    top:-110%;
+
+    left:-110%;
+
+    background:
+
+    linear-gradient(
+        58deg,
+        transparent 48.5%,
+        rgba(255,255,255,.05) 49%,
+        rgba(255,255,255,.98) 49.6%,
+        rgba(170,0,0,.95) 50.2%,
+        transparent 51%
+    ),
+
+    linear-gradient(
+        58deg,
+        transparent 57%,
+        rgba(255,255,255,.05) 57.5%,
+        rgba(255,255,255,.98) 58.1%,
+        rgba(170,0,0,.95) 58.8%,
+        transparent 59.5%
+    ),
+
+    linear-gradient(
+        58deg,
+        transparent 66%,
+        rgba(255,255,255,.05) 66.5%,
+        rgba(255,255,255,.98) 67.1%,
+        rgba(170,0,0,.95) 67.8%,
+        transparent 68.5%
+    );
+
+    filter:
+
+        blur(.8px)
+
+        drop-shadow(0 0 10px red)
+
+        drop-shadow(0 0 20px darkred);
+
+    transform:
+
+        translate(-850px,-850px)
+
+        rotate(-18deg)
+
+        scale(1.35);
+
+}
+
+#scratchOverlay.active{
+
+    opacity:1;
+
+}
+
+#scratchOverlay.active::before{
+
+    animation:clawAttack 1.7s ease-out forwards;
+
+}
+
+@keyframes clawAttack{
+
+    0%{
+
+        transform:
+
+            translate(-850px,-850px)
+
+            rotate(-18deg)
+
+            scale(1.35);
+
+        opacity:0;
+
+    }
+
+    12%{
+
+        opacity:1;
+
+    }
+
+    35%{
+
+        transform:
+
+            translate(-260px,-180px)
+
+            rotate(-12deg)
+
+            scale(1.2);
+
+    }
+
+    55%{
+
+        transform:
+
+            translate(150px,130px)
+
+            rotate(-8deg)
+
+            scale(1.05);
+
+    }
+
+    72%{
+
+        transform:
+
+            translate(420px,430px)
+
+            rotate(-6deg)
+
+            scale(1);
+
+    }
+
+    90%{
+
+        opacity:.95;
+
+    }
+
+    100%{
+
+        transform:
+
+            translate(700px,700px)
+
+            rotate(-5deg)
+
+            scale(1);
+
+        opacity:0;
+
+    }
+
+}

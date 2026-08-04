@@ -309,7 +309,7 @@ async function showCameraRestore() {
     LOSE LEVEL
 ========================================================== */
 
-function loseLevel() {
+async function loseLevel() {
 
     if (GameState.timerInterval) {
     clearInterval(GameState.timerInterval);
@@ -325,9 +325,14 @@ function loseLevel() {
     GameState.lockBoard = false;
     GameState.canClick = false;
 
-    playGameOver();
+    showGameOver();
 
     showGameOver();
+
+setTimeout(() => {
+    playScratchEffect();
+    jumpScare();
+},250);
 
 }
 

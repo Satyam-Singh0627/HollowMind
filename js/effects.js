@@ -86,6 +86,30 @@ function shakeScreen(duration = 400) {
 }
 
 /* ==========================================================
+    SCREEN SCRATCH
+========================================================== */
+
+function playScratchEffect(){
+
+    const scratch = document.getElementById("scratchOverlay");
+
+    if(!scratch) return;
+
+    scratch.classList.remove("active");
+
+    void scratch.offsetWidth;
+
+    scratch.classList.add("active");
+
+    setTimeout(() => {
+
+        scratch.classList.remove("active");
+
+    },1600);
+
+}
+
+/* ==========================================================
     COMBINED JUMPSCARE
 ========================================================== */
 
