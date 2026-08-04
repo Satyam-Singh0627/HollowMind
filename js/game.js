@@ -274,9 +274,9 @@ async function levelCompleted() {
 
     stopHeartbeat();
 
-    playSound("behind", 0.9);
+    playVoice("behind",0.9);
 
-    await sleep(1400);
+    await sleep(2500);
 
     playLevelUp();
 
@@ -325,14 +325,17 @@ async function loseLevel() {
     GameState.lockBoard = false;
     GameState.canClick = false;
 
-    showGameOver();
-
-    showGameOver();
+    playGameOver();
 
 setTimeout(() => {
+
     playScratchEffect();
+
     jumpScare();
-},250);
+
+    showGameOver();
+
+},500);
 
 }
 

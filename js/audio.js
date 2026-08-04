@@ -15,9 +15,13 @@ const AudioManager = {
 
     sounds: {},
 
-    initialized: false
+    initialized: false,
+
+     voice: null
 
 };
+
+let wrongVoiceTimeout = null;
 
 /* ==========================================================
     AUDIO FILES
@@ -28,8 +32,6 @@ const AUDIO_FILES = {
     alarm: "audio/alarm.wav",
 
     breath: "audio/breath.mp3",
-
-    storm: "audio/cloudsound.mpeg",
 
     cardFlip: "audio/card flip.mp3",
 
@@ -112,6 +114,42 @@ function playSound(name, volume = 1) {
     audio.play().catch(() => {});
 }
 
+function playVoice(name, volume = 1){
+
+    if(AudioManager.voice){
+
+    AudioManager.voice.pause();
+
+    AudioManager.voice.currentTime = 0;
+
+    AudioManager.voice = null;
+
+     }
+
+    const source = AudioManager.sounds[name];
+
+    if(!source) return;
+
+    const audio = source.cloneNode();
+
+    audio.volume = volume;
+
+    AudioManager.voice = audio;
+
+    audio.onended = () => {
+
+    if (AudioManager.voice === audio) {
+
+        AudioManager.voice = null;
+
+    }
+
+};
+
+    audio.play().catch(()=>{});
+
+}
+
 /* ==========================================================
     LOOP
 ========================================================== */
@@ -168,6 +206,18 @@ function stopAllSounds() {
 
     });
 
+    if(AudioManager.voice){
+
+    AudioManager.voice.pause();
+
+    AudioManager.voice.currentTime = 0;
+
+    AudioManager.voice = null;
+
+   }
+
+clearTimeout(wrongVoiceTimeout);
+
 }
 
 /* ==========================================================
@@ -212,11 +262,9 @@ function playRandomWhisper() {
 
         "coming",
 
-        "behind"
-
     ];
 
-    playSound(randomItem(whispers), 0.95);
+    playVoice(randomItem(whispers),0.95);
 
 }
 
@@ -280,9 +328,11 @@ function playWrong(){
 
     playSound("wrong",0.8);
 
-    setTimeout(() => {
+    clearTimeout(wrongVoiceTimeout);
 
-        playSound("coming",0.85);
+    wrongVoiceTimeout = setTimeout(() => {
+
+        playVoice("coming",0.85);
 
     },300);
 
@@ -318,30 +368,21 @@ function playGameOver(){
 
     stopAllSounds();
 
-    playSound("scream",0.9);
+    playVoice("scream",0.9);
 
+    
     setTimeout(() => {
+
+    if(GameState.gameStarted){
 
         playSound("gameOver",0.9);
 
-    },1200);
+    }
 
-}
-/* ==========================================================
-    STORM AMBIENCE
-========================================================== */
-
-function startStorm(){
-
-    playLoop("storm",0.18);
+  },2500);
 
 }
 
-function stopStorm(){
-
-    stopSound("storm");
-
-}
 
 /* ==========================================================
     RANDOM HORROR EVENT
@@ -359,15 +400,9 @@ function playRandomHorror(){
 
     }
 
-    else if(chance <= 85){
-
-        playSound("breath",0.7);
-
-    }
-
     else{
 
-        playSound("scream",0.85);
+        playVoice("breath",0.7);
 
     }
 
