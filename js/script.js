@@ -16,11 +16,32 @@ window.addEventListener("DOMContentLoaded", () => {
         showScreen("clickScreen");
     }
 
+    // ============================
+    // Restore saved operator name
+    // ============================
+    const savedName = localStorage.getItem("operatorName");
+
+    if (savedName) {
+
+        const display = document.getElementById("operatorDisplay");
+
+        if (display) {
+
+            display.textContent = savedName.toUpperCase();
+
+        }
+
+    }
+
     // Audio unlock after first click
     document.addEventListener("click", () => {
+
         if (typeof initAudio === "function") {
+
             initAudio();
+
         }
+
     }, { once: true });
 
     console.log("Initialization Complete");

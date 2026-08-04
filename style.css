@@ -317,6 +317,77 @@ button{
 
 }
 
+/* ==========================================
+        OPERATOR LOGIN
+========================================== */
+
+.operatorText{
+
+    font-family:'VT323', monospace;
+
+    font-size:34px;
+
+    color:#00ff88;
+
+    letter-spacing:4px;
+
+    margin:25px 0;
+
+    text-shadow:
+        0 0 8px #00ff88;
+
+}
+
+#operatorName{
+
+    width:420px;
+
+    max-width:90%;
+
+    padding:18px;
+
+    background:#000;
+
+    color:#00ff88;
+
+    border:2px solid #00ff88;
+
+    font-size:28px;
+
+    text-align:center;
+
+    font-family:'VT323', monospace;
+
+    outline:none;
+
+    margin-bottom:35px;
+
+    text-transform:uppercase;
+
+}
+
+#operatorName::placeholder{
+
+    color:#006633;
+
+}
+#operatorScreen{
+
+    background:#000;
+
+}
+
+#operatorScreen .gameTitle{
+
+    margin-bottom:15px;
+
+}
+
+#operatorScreen button{
+
+    margin-top:10px;
+
+}
 button:hover{
 
     background:#00ff88;
@@ -1262,5 +1333,19 @@ button:hover{
     min-height:40px;
 
     transition:.4s;
+
+}
+
+#operatorDisplay{
+
+    font-size:28px;
+
+    color:#ffffff;
+
+    text-shadow:0 0 10px #00ff88;
+
+    margin-bottom:25px;
+
+    word-break:break-word;
 
 }

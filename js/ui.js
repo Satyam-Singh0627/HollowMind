@@ -116,7 +116,7 @@ document.addEventListener("keydown", async (event) => {
 
     await sleep(1200);
 
-    showInstructions();
+    showScreen("operatorScreen");
 
 });
 
@@ -127,6 +127,38 @@ document.addEventListener("keydown", async (event) => {
 function showInstructions() {
 
     showScreen("instructionScreen");
+
+}
+
+/* ==========================================================
+    OPERATOR LOGIN
+========================================================== */
+
+let operatorName = "";
+
+function submitOperatorName() {
+
+    const input = document.getElementById("operatorName");
+
+    operatorName = input.value.trim();
+
+    if(operatorName==="")
+    {
+        input.focus();
+        return;
+    }
+
+    localStorage.setItem("operatorName",operatorName);
+
+    const display = document.getElementById("operatorDisplay");
+
+if(display){
+
+    display.textContent = operatorName.toUpperCase();
+
+}
+
+    showInstructions();
 
 }
 
@@ -155,6 +187,12 @@ const replayButton =
 
 const closeInstructionsButton =
     document.getElementById("closeInstructions");
+
+const operatorInput =
+    document.getElementById("operatorName");
+
+const operatorSubmit =
+    document.getElementById("operatorSubmit");
 
 /* ==========================================================
     START GAME
@@ -197,6 +235,30 @@ if (startMissionButton) {
     startMissionButton.addEventListener("click", () => {
 
         beginMission();
+
+    });
+
+}
+
+/* ==========================================================
+    OPERATOR SUBMIT
+========================================================== */
+
+if(operatorSubmit){
+
+    operatorSubmit.addEventListener("click",submitOperatorName);
+
+}
+
+if(operatorInput){
+
+    operatorInput.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Enter"){
+
+            submitOperatorName();
+
+        }
 
     });
 
