@@ -26,3 +26,37 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log("Initialization Complete");
 
 });
+/* ==========================================
+   STATUS TEXT CHANGER
+========================================== */
+
+const STATUS_MESSAGES = [
+
+    "MONITORING...",
+
+    "SCANNING...",
+
+    "TRACKING...",
+
+    "SIGNAL STABLE",
+
+    "ENTITY DETECTED",
+
+    "SIGNAL LOST"
+
+];
+
+setInterval(() => {
+
+    if (!GameState.gameStarted) return;
+
+    const status = document.getElementById("statusText");
+
+    if (!status) return;
+
+    status.textContent =
+        STATUS_MESSAGES[
+            randomInt(0, STATUS_MESSAGES.length - 1)
+        ];
+
+}, 8000);

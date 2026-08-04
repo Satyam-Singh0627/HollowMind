@@ -29,6 +29,8 @@ const AUDIO_FILES = {
 
     breath: "audio/breath.mp3",
 
+    storm: "audio/cloudsound.mpeg",
+
     cardFlip: "audio/card flip.mp3",
 
     correct: "audio/correct.mp3",
@@ -323,6 +325,21 @@ function playGameOver(){
         playSound("gameOver",0.9);
 
     },1200);
+
+}
+/* ==========================================================
+    STORM AMBIENCE
+========================================================== */
+
+function startStorm(){
+
+    playLoop("storm",0.18);
+
+}
+
+function stopStorm(){
+
+    stopSound("storm");
 
 }
 

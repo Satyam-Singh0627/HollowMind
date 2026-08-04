@@ -350,43 +350,84 @@ button:hover{
 #hud{
 
     position:absolute;
-
     top:0;
-
     left:0;
 
     width:100%;
 
-    padding:25px;
-
-    display:flex;
-
-    justify-content:space-between;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
 
     align-items:center;
 
-    font-size:28px;
+    padding:22px 35px;
 
     z-index:100;
 
 }
 
-#lives{
+#lives,
+#level,
+#timer{
 
-    color:#ff5555;
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:28px;
 
 }
 
-#timer{
+#lives{
 
-    color:#00ff88;
+    justify-self:start;
 
 }
 
 #level{
 
+    justify-self:center;
+
+}
+
+#timer{
+
+    justify-self:end;
+
+}
+
+.hudTitle{
+
+    color:#00ff88;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+#lifeCount,
+#cameraLevel,
+#timeValue{
+
     color:#ffffff;
 
+    font-size:32px;
+
+    font-weight:bold;
+
+    text-shadow:0 0 10px rgba(255,255,255,.4);
+
+}
+
+#lives{
+    color:#ff4d6d;
+}
+
+#timer{
+    color:#00ff88;
 }
 /* ==========================================
             GAME BOARD
@@ -1151,5 +1192,75 @@ button:hover{
     gap:18px;
 
     z-index:50;
+
+}
+/* ===========================
+      SIDE PANELS
+=========================== */
+
+#leftPanel,
+#rightPanel{
+
+    position:absolute;
+
+    top:140px;
+
+    width:180px;
+
+    text-align:center;
+
+    z-index:60;
+
+    color:white;
+
+}
+
+#leftPanel{
+
+    left:35px;
+
+}
+
+#rightPanel{
+
+    right:35px;
+
+}
+
+.panelTitle{
+
+    color:#00ff88;
+
+    font-size:18px;
+
+    letter-spacing:3px;
+
+    margin-bottom:18px;
+
+    text-transform:uppercase;
+
+}
+
+#threatLevel{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    text-shadow:0 0 15px red;
+
+    transition:.4s;
+
+}
+
+#statusText{
+
+    font-size:22px;
+
+    color:#00ff88;
+
+    min-height:40px;
+
+    transition:.4s;
 
 }

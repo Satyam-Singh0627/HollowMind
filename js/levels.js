@@ -205,13 +205,14 @@ function updateHUD() {
 
     const level = getCurrentLevel();
 
-    document.getElementById("level").textContent = level.name;
+    document.getElementById("lifeCount").textContent =
+        GameState.lives;
 
-    document.getElementById("timer").textContent =
+    document.getElementById("cameraLevel").textContent =
+    String(level.id).padStart(2, "0");
+
+    document.getElementById("timeValue").textContent =
         formatTime(GameState.timer);
-
-    document.getElementById("lives").textContent =
-        "❤️".repeat(GameState.lives);
 
 }
 
