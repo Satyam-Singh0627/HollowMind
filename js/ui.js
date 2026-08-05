@@ -137,6 +137,8 @@ function showInstructions() {
 
 let operatorName = "";
 
+let previousScreen = "";
+
 function submitOperatorName() {
 
     const input = document.getElementById("operatorName");
@@ -200,6 +202,15 @@ const operatorInput =
 
 const operatorSubmit =
     document.getElementById("operatorSubmit");
+
+const leaderboardWin =
+document.getElementById("leaderboardWin");
+
+const leaderboardGameOver =
+document.getElementById("leaderboardGameOver");
+
+const closeLeaderboard =
+document.getElementById("closeLeaderboard");
 
 /* ==========================================================
     START GAME
@@ -469,42 +480,41 @@ function formatLeaderboardTime(seconds){
 
 }
 
-function saveLeaderboard(){
+if(leaderboardWin){
 
-    const leaderboard =
-        JSON.parse(localStorage.getItem("leaderboard")) || [];
+    leaderboardWin.addEventListener("click",()=>{
 
-    leaderboard.push({
+        previousScreen = "winScreen";
 
-        operator:
-            localStorage.getItem("operatorName") || "UNKNOWN",
+        loadLeaderboard();
 
-        lives:
-            GameState.totalLives,
-
-        time:
-            GameState.totalPlayTime
+        showScreen("leaderboardScreen");
 
     });
 
-    leaderboard.sort((a,b)=>{
+}
 
-        if(b.lives!==a.lives)
-            return b.lives-a.lives;
+if(leaderboardGameOver){
 
-        return a.time-b.time;
+    leaderboardGameOver.addEventListener("click",()=>{
+
+        previousScreen = "gameOverScreen";
+
+        loadLeaderboard();
+
+        showScreen("leaderboardScreen");
 
     });
 
-    leaderboard.splice(10);
+}
 
-    localStorage.setItem(
+if(closeLeaderboard){
 
-        "leaderboard",
+    closeLeaderboard.addEventListener("click",()=>{
 
-        JSON.stringify(leaderboard)
+        showScreen(previousScreen);
 
-    );
+    });
 
 }
 
@@ -516,7 +526,7 @@ function loadLeaderboard(){
     const body =
         document.getElementById("leaderboardBody");
 
-    body.innerHTML="";
+    body.innerHTML = "";
 
     leaderboard.forEach((player,index)=>{
 
@@ -528,14 +538,63 @@ function loadLeaderboard(){
 
             <td>${player.operator}</td>
 
+            <td>${player.level}/4</td>
+
             <td>${player.lives}</td>
 
             <td>${formatLeaderboardTime(player.time)}</td>
+
+            <td>${player.status}</td>
 
         </tr>
 
         `;
 
     });
+
+}
+
+function saveLeaderboard(status){
+
+    let leaderboard =
+        JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    leaderboard.push({
+
+        operator:
+            localStorage.getItem("operatorName") || "UNKNOWN",
+
+        lives:
+            GameState.totalLives,
+
+        time:
+            GameState.totalPlayTime,
+
+        level:
+            GameState.completedLevels,
+
+        status:
+            status
+
+    });
+
+    leaderboard.sort((a,b)=>{
+
+        if(b.level !== a.level)
+            return b.level - a.level;
+
+        if(b.lives !== a.lives)
+            return b.lives - a.lives;
+
+        return a.time - b.time;
+
+    });
+
+    leaderboard.splice(10);
+
+    localStorage.setItem(
+        "leaderboard",
+        JSON.stringify(leaderboard)
+    );
 
 }

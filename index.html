@@ -400,21 +400,27 @@
 
             </p>
 
-           <div class="endButtons">
+            <div class="endButtons">
 
     <button id="restartGame">
 
-        PLAY AGAIN
+    PLAY AGAIN
 
     </button>
 
     <button id="newOperatorGameOver">
 
-        NEW OPERATOR
+    NEW OPERATOR
 
     </button>
 
-</div>
+    <button id="leaderboardGameOver">
+
+    GLOBAL LEADERBOARD
+
+    </button>
+
+    </div>
 
         </section>
 
@@ -521,51 +527,79 @@
 
     </div>
 
-    <hr class="leaderDivider">
-
-<h2 class="leaderTitle">
-    GLOBAL LEADERBOARD
-</h2>
-
-<table id="leaderboardTable">
-
-    <thead>
-
-        <tr>
-
-            <th>#</th>
-
-            <th>Operator</th>
-
-            <th>Lives</th>
-
-            <th>Time</th>
-
-        </tr>
-
-    </thead>
-
-    <tbody id="leaderboardBody">
-
-    </tbody>
-
-</table>
+    
 
     <div class="endButtons">
 
     <button id="replayGame">
 
-        PLAY AGAIN
+    PLAY AGAIN
 
     </button>
 
     <button id="newOperatorWin">
 
-        NEW OPERATOR
+    NEW OPERATOR
 
     </button>
 
-</div>
+    <button id="leaderboardWin">
+
+    GLOBAL LEADERBOARD
+
+    </button>
+
+    </div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- GLOBAL LEADERBOARD -->
+<!-- ===================================== -->
+
+<section id="leaderboardScreen"
+class="screen hidden">
+
+<button id="closeLeaderboard"
+class="closeLeader">
+
+✕
+
+</button>
+
+<h1>
+
+GLOBAL LEADERBOARD
+
+</h1>
+
+<table id="leaderboardTable">
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Operator</th>
+
+<th>Level</th>
+
+<th>Lives</th>
+
+<th>Time</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="leaderboardBody">
+
+</tbody>
+
+</table>
 
 </section>
         

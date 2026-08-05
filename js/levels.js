@@ -157,11 +157,15 @@ const GameState = {
 
     correctMatches: 0,
     
-    wrongMatches: 0,    
+    wrongMatches: 0, 
+    
+    completedLevels:0,
 
     totalLives: 0,
 
     totalPlayTime: 0
+
+    
 
 };
 
@@ -270,6 +274,8 @@ function nextLevel() {
 
     clearInterval(GameState.timerInterval);
 
+    GameState.completedLevels++;
+
     GameState.currentLevel++;
 
     if (GameState.currentLevel >= LEVELS.length) {
@@ -307,6 +313,8 @@ function resetGame() {
     GameState.totalLives = 0;
 
     GameState.totalPlayTime = 0;
+
+    GameState.completedLevels = 0;
     
     GameState.correctMatches = 0;
 

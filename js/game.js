@@ -353,6 +353,10 @@ function showGameOver() {
 
     GameState.canClick = false;
 
+    saveLeaderboard("FAILED");
+
+    loadLeaderboard();
+
     showScreen("gameOverScreen");
 
 }
@@ -420,12 +424,11 @@ function showWinScreen() {
 
     updateMissionReport();
 
-    saveLeaderboard();
+    saveLeaderboard("COMPLETED");
 
     loadLeaderboard();
 
     showScreen("winScreen");
-
 }
 
 /* ==========================================================
