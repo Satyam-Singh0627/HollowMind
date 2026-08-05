@@ -518,7 +518,7 @@ if(closeLeaderboard){
 
 }
 
-function loadLeaderboard(){
+function loadLeaderboard() {
 
     const leaderboard =
         JSON.parse(localStorage.getItem("leaderboard")) || [];
@@ -528,23 +528,37 @@ function loadLeaderboard(){
 
     body.innerHTML = "";
 
-    leaderboard.forEach((player,index)=>{
+    leaderboard.forEach((player, index) => {
+
+        const operator = player.operator || "UNKNOWN";
+
+        const level =
+            Number.isInteger(player.level) ? player.level : 0;
+
+        const lives =
+            Number.isInteger(player.lives) ? player.lives : 0;
+
+        const time =
+            Number.isInteger(player.time) ? player.time : 0;
+
+        const status =
+            player.status || "FAILED";
 
         body.innerHTML += `
 
         <tr>
 
-            <td>${index+1}</td>
+            <td>${index + 1}</td>
 
-            <td>${player.operator}</td>
+            <td>${operator}</td>
 
-            <td>${player.level}/4</td>
+            <td>${level}/4</td>
 
-            <td>${player.lives}/12</td>
+            <td>${lives}/12</td>
 
-            <td>${formatLeaderboardTime(player.time)}</td>
+            <td>${formatLeaderboardTime(time)}</td>
 
-            <td>${player.status}</td>
+            <td>${status}</td>
 
         </tr>
 
@@ -561,18 +575,17 @@ function saveLeaderboard(status, lives = GameState.savedLives){
 
     leaderboard.push({
 
-        operator:
-        localStorage.getItem("operatorName") || "UNKNOWN",
+    operator: localStorage.getItem("operatorName") || "UNKNOWN",
 
-        lives: lives,
+    lives: Number(lives),
 
-        time: GameState.totalPlayTime,
+    time: Number(GameState.totalPlayTime),
 
-        level: GameState.completedLevels,
+    level: Number(GameState.completedLevels),
 
-        status: status
+    status: status
 
-    });
+});
 
     leaderboard.sort((a,b)=>{
 

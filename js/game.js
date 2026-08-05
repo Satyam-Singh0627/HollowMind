@@ -377,7 +377,7 @@ function updateMissionReport(){
     GameState.savedLives + "/12";   
 
     document.getElementById("resultCamera").textContent =
-        LEVELS.length + " / " + LEVELS.length;
+    GameState.completedLevels + " / " + LEVELS.length;
 
     const totalAttempts =
     GameState.correctMatches +
@@ -395,17 +395,17 @@ function updateMissionReport(){
 
     let rank="RECRUIT";
 
-    if(GameState.savedLives>=10)
-    rank = "LEGEND";
+        if(GameState.savedLives == 12)
+        rank = "LEGEND";
 
-    else if(GameState.savedLives >= 8)
-    rank = "SURVIVOR";
+    else if(GameState.savedLives >= 9)
+        rank = "SURVIVOR";
 
-    else if(GameState.savedLives >= 4)
-    rank = "ESCAPED";
+    else if(GameState.savedLives >= 6)
+        rank = "ESCAPED";
 
     else
-    rank = "CRITICAL";
+        rank = "CRITICAL";
 
     document.getElementById("finalRank").textContent=rank;
 
