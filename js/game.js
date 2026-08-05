@@ -267,7 +267,7 @@ function resetTurn() {
 
 async function levelCompleted() {
 
-    GameState.totalLives += GameState.lives;
+    GameState.savedLives += GameState.lives;
 
     GameState.canClick = false;
 
@@ -353,7 +353,10 @@ function showGameOver() {
 
     GameState.canClick = false;
 
-    saveLeaderboard("FAILED");
+    const leaderboardLives =
+        GameState.savedLives + Math.max(GameState.lives, 0);
+
+    saveLeaderboard("FAILED", leaderboardLives);
 
     loadLeaderboard();
 
@@ -371,7 +374,7 @@ function updateMissionReport(){
     formatLeaderboardTime(GameState.totalPlayTime);
 
     document.getElementById("resultLives").textContent =
-    GameState.totalLives;
+    GameState.savedLives + "/12";   
 
     document.getElementById("resultCamera").textContent =
         LEVELS.length + " / " + LEVELS.length;
@@ -392,13 +395,13 @@ function updateMissionReport(){
 
     let rank="RECRUIT";
 
-    if(GameState.totalLives >= 12)
+    if(GameState.savedLives>=10)
     rank = "LEGEND";
 
-    else if(GameState.totalLives >= 8)
+    else if(GameState.savedLives >= 8)
     rank = "SURVIVOR";
 
-    else if(GameState.totalLives >= 4)
+    else if(GameState.savedLives >= 4)
     rank = "ESCAPED";
 
     else
@@ -424,7 +427,10 @@ function showWinScreen() {
 
     updateMissionReport();
 
-    saveLeaderboard("COMPLETED");
+    saveLeaderboard(
+    "COMPLETED",
+    GameState.savedLives
+    );
 
     loadLeaderboard();
 

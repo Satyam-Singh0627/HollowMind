@@ -540,7 +540,7 @@ function loadLeaderboard(){
 
             <td>${player.level}/4</td>
 
-            <td>${player.lives}</td>
+            <td>${player.lives}/12</td>
 
             <td>${formatLeaderboardTime(player.time)}</td>
 
@@ -554,43 +554,40 @@ function loadLeaderboard(){
 
 }
 
-function saveLeaderboard(status){
+function saveLeaderboard(status, lives = GameState.savedLives){
 
     let leaderboard =
-        JSON.parse(localStorage.getItem("leaderboard")) || [];
+    JSON.parse(localStorage.getItem("leaderboard")) || [];
 
     leaderboard.push({
 
         operator:
-            localStorage.getItem("operatorName") || "UNKNOWN",
+        localStorage.getItem("operatorName") || "UNKNOWN",
 
-        lives:
-            GameState.totalLives,
+        lives: lives,
 
-        time:
-            GameState.totalPlayTime,
+        time: GameState.totalPlayTime,
 
-        level:
-            GameState.completedLevels,
+        level: GameState.completedLevels,
 
-        status:
-            status
+        status: status
 
     });
 
     leaderboard.sort((a,b)=>{
 
-        if(b.level !== a.level)
-            return b.level - a.level;
+        if(b.level != a.level)
+            return b.level-a.level;
 
-        if(b.lives !== a.lives)
-            return b.lives - a.lives;
+        if(b.lives != a.lives)
+            return b.lives-a.lives;
 
-        return a.time - b.time;
+        return a.time-b.time;
 
     });
 
-    leaderboard.splice(10);
+    // Remove this line if you want to keep ALL players
+    // leaderboard.splice(10);
 
     localStorage.setItem(
         "leaderboard",

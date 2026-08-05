@@ -161,7 +161,7 @@ const GameState = {
     
     completedLevels:0,
 
-    totalLives: 0,
+    savedLives:0,
 
     totalPlayTime: 0
 
@@ -310,7 +310,7 @@ function resetGame() {
 
     GameState.gameStarted = false;
 
-    GameState.totalLives = 0;
+    GameState.savedLives=0;
 
     GameState.totalPlayTime = 0;
 
